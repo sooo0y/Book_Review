@@ -1,12 +1,15 @@
 import React from "react";
-import styled from "styled-components";
-
-import React from "react";
-import styled from "styled-components";
+// import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { useState } from "react";
 
+
+let number = 1;
 const Form = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
 
   const initialState = {
     id: 0,
@@ -14,23 +17,50 @@ const Form = () => {
     title: "",
     body: "",
   };
-
   
+  const [post, setPost] = useState(initialState);
+  const onChangeHandler = (event) => {
+    const { name, value } = event.target;
+    setPost({...post, [name]: value});
+  };
+  
+  const onSubmitHandler = (event) => {
+    event.preventDefault();
+    dispatch(({...post, id: number}));
+    setPost(initialState);
+    number++;
+  };
+
 
   return (
-    <>
-      <StContainerForm>
+    <form onSubmit={onSubmitHandler}>
+      <div>
         <div>
           <label>작성자</label>
-          <input type="text" />
+          <input 
+          type="text"
+          name="username"
+          value={post.username}
+          onChange={onChangeHandler} 
+          />
         </div>
         <div>
           <label>책 제목</label>
-          <input type="text" />
+          <input 
+          type="text"
+          name="title"
+          value={post.title}
+          onChange={onChangeHandler} 
+          />
         </div>
         <div>
           <label>내용</label>
-          <input type="text" />
+          <input 
+          type="text"
+          name="body"
+          value={post.body}
+          onChange={onChangeHandler} 
+          />
         </div>      
         <div>
           </div>
@@ -38,23 +68,23 @@ const Form = () => {
             <input type="file" accept="image/*" />
           <div>
           <div>
-            <StButtonForm onClick={() => { navigate('/') }}>취소</StButtonForm> 
+            <button onClick={() => { navigate('/') }}>취소</button> 
             <input type="submit" value="추가하기"/>  
           </div>          
         </div>
-      </StContainerForm>
-    </>
+      </div>
+    </form>
   );
 };
-const StContainerForm = styled.div`
-  background-color: whitesmoke;
-  width: 100%;
-  max-width: 1200px;
-  min-width: 800px;
-  height: 800px;
-`;
-const StButtonForm = styled.button`
-  border: 1px solid ${({ borderColor }) => borderColor};
-  cursor: pointer;
-`;
+// const StContainerForm = styled.div`
+//   background-color: whitesmoke;
+//   width: 100%;
+//   max-width: 1200px;
+//   min-width: 800px;
+//   height: 800px;
+// `;
+// const StButtonForm = styled.button`
+//   border: 1px solid ${({ borderColor }) => borderColor};
+//   cursor: pointer;
+// `;
 export default Form;
