@@ -58,5 +58,3 @@ const StButtonForm = styled.button`
   cursor: pointer;
 `;
 export default Form;
-
-export default Form;
