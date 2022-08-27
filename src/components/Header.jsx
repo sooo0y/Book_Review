@@ -8,12 +8,7 @@ const Header = () => {
 
   return (
   <StHeader>
-  <h1>BOOK REVIEW</h1>
-  <button
-    onClick={() => {
-      navigate("/form");
-    }}
-    > 추가하기 </button>
+  <h1 onClick = {() => {navigate("/")}}>BOOK REVIEW</h1>
   </StHeader>
   );
 };
@@ -24,7 +19,10 @@ const StHeader = styled.div`
   position: fixed;
   top: 0;
   left: 0;
-  height: 150px;
+  height: 100px;
   width: 100%;
-  background-color: red;
+  padding: 0 50px;
+
+  background-color: #5f9947;
+
 `;
