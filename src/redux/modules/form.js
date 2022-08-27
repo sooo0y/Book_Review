@@ -29,8 +29,6 @@ const initialState = [
     body: "성공합시다~!",
     image: "https://image.aladin.co.kr/product/43/50/cover500/8934913258_2.jpg",
   },
- 
-  
 ];
 
 export const formSlice = createSlice({
@@ -43,8 +41,6 @@ export const formSlice = createSlice({
       return newPost
     }
     
-    
-
   }
 });
 
