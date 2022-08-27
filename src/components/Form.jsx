@@ -14,7 +14,9 @@ const Form = () => {
   const initialState = {
     id: 0,
     username: "",
+    category:"",
     title: "",
+    writer: "",
     body: "",
   };
   
@@ -45,6 +47,27 @@ const Form = () => {
           />
         </div>
         <div>
+          <label>카테고리</label>
+          <select name="category">
+            <option value="소설•시•에세이">소설•시•에세이</option>
+            <option value="자기계발">자기계발</option>
+            <option value="인문학•역사">인문학•역사</option>
+            <option value="경제•경영">경제•경영</option>
+            <option value="자연과학">자연과학</option>
+            <option value="철학•예술•종교">철학•예술•종교</option>
+            <option value="기타">기타</option>
+          </select>
+        </div>
+        <div>
+          <label>작가명</label>
+          <input 
+          type="text"
+          name="writer"
+          value={post.writer}
+          onChange={onChangeHandler} 
+          />
+        </div>
+        <div>
           <label>책 제목</label>
           <input 
           type="text"
@@ -67,10 +90,11 @@ const Form = () => {
             <p>이미지를 업로드해주세요</p>
             <input type="file" accept="image/*" />
           <div>
+            <br></br>
           <div>
             <button onClick={() => { navigate('/') }}>취소</button> 
-            <input type="submit" value="추가하기"/>  
-          </div>          
+            <input type="submit" value="추가하기"/>
+          </div>
         </div>
       </div>
     </form>
