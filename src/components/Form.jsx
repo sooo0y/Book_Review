@@ -94,6 +94,7 @@ const Form = () => {
           <div>
             <button onClick={() => { navigate('/') }}>취소</button> 
             <input type="submit" value="추가하기"/>
+            <input type="reset" value="다시 작성하기" />
           </div>
         </div>
       </div>
