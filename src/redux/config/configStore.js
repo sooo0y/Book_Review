@@ -1,10 +1,12 @@
-import { createStore } from "redux";
-import { combineReducers } from "redux";
-import reviews from "../modules/reviews";
+import { configureStore } from "@reduxjs/toolkit";
+import comment from "../modules/comment";
+import form from "../modules/form";
 
-const rootReducer = combineReducers({
-    // reviews : reviews
+const store = configureStore({
+  reducer: {
+		comment,
+    form,
+  },
 });
-const store = createStore(rootReducer);
 
 export default store;
