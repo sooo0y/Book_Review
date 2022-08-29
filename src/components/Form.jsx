@@ -15,7 +15,7 @@ const Form = () => {
   const initialState = {
     id: 0,
     username: "",
-    // category:"",
+    category:"",
     title: "",
     writer: "",
     body: "",
@@ -36,14 +36,18 @@ const Form = () => {
     // navigate('/')
   };
 
-  const selectList = ["카테고리 선택", "소설•시•에세이", "자기계발", "인문학•역사", "경제•경영", "자연과학", "철학•예술•종교", "기타"];
-  const [selected, setSelected] = useState("");
+  const OPTIONS = [
+    { value: "", name: "카테고리 선택" },
+    { value: "소설•시•에세이", name: "소설•시•에세이" },
+    { value: "자기계발", name: "자기계발" },
+    { value: "인문학•역사", name: "인문학•역사" },
+    { value: "경제•경영", name: "경제•경영" },
+    { value: "철학•예술•종교", name: "철학•예술•종교" },
+    { value: "기타", name: "기타" },
+  ];
+  
 
-
-  const handleSelect = (event) => {
-    setSelected(event.target)
-  };
-  console.log(selected)
+  
  
   const [imageSrc, setImageSrc] = useState("");
 
@@ -75,13 +79,7 @@ const Form = () => {
         </div>
         <div>
           <label>카테고리</label>
-          <select name="category" onChange={handleSelect} value={selected}>
-            {selectList.map((item) => (
-              <option value={item} key = {item}>
-                {item}
-              </option>
-            ))}
-          </select>
+          <SelectBox options={OPTIONS} defaultValue="카테고리 선택"></SelectBox>
         </div>
         <div>
           <label>작가명</label>
@@ -130,15 +128,27 @@ const Form = () => {
     </form>
   );
 };
-// const StContainerForm = styled.div`
-//   background-color: whitesmoke;
-//   width: 100%;
-//   max-width: 1200px;
-//   min-width: 800px;
-//   height: 800px;
-// `;
-// const StButtonForm = styled.button`
-//   border: 1px solid ${({ borderColor }) => borderColor};
-//   cursor: pointer;
-// `;
+
+const SelectBox = (props) => {
+	const handleChange = (e) => {
+		// event handler
+		console.log(e.target.value);
+	};
+
+	return (
+		<select onChange={handleChange}>
+			{props.options.map((option) => (
+				<option
+					key={option.value}
+					value={option.value}
+					defaultValue={props.defaultValue === option.value}
+				>
+					{option.name}
+				</option>
+			))}
+		</select>
+	);
+};
+
+
 export default Form;
