@@ -31,7 +31,7 @@ const Form = () => {
 
   const onSubmitHandler = (event) => {
     event.preventDefault();
-    if (post.username.trim() === "" || post.title.trim() === "" || post.writer.trim() === "" || post.body.trim() === "") return alert("한 글자 이상 입력해주세요!");
+    if (post.username.trim() === "" || post.category.trim() === "" || post.title.trim() === "" ||  post.writer.trim() === "" || post.body.trim() === "") return alert("한 글자 이상 입력해주세요!");
     dispatch(addPost({ ...post, id: number }));
     setPost(initialState);
     number++;
