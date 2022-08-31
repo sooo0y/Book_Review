@@ -38,7 +38,7 @@ const Comment = () => {
 
 
   return (
-    <div>
+    <StComment>
       <form onSubmit={onSubmitHandler}>
         <label>댓글</label>
         <input
@@ -61,12 +61,12 @@ const Comment = () => {
           );
         })}
       </div>
-    </div>
+    </StComment>
   );
 };
 
 export default Comment;
 
-const Dd = styled.div`
-  border-bottom: 1px solid grey;
+const StComment = styled.div`
+  width: 40%;
 `;

@@ -1,79 +1,50 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import axios from "axios";
 
 // 초기값
-const initialState = [
-  {
-    id:1,
-    username: "윤채원",
-<<<<<<< HEAD
-    category: "기타",
-    title: "조선 왕조 실록",
-    writer: "오세경",
-    body: "태정태세문단세",
-=======
-    category: "인문학·역사",
-    title: "조선 왕조 실록",
-    writer: "오세경",
-    body: "태정태세문단세",
-    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDsNRN1Majiu52dwjeF5Qqx3uENlgjQoJopw&usqp=CAU",
->>>>>>> home
-  },
-  {
-    id:2,
-    username: "김소연",
-<<<<<<< HEAD
-    category: "기타",
-    title: "나의 라임 오렌지나무",
-    writer: "윤사랑",
-    body: "제제~!",
+const initialState = {
+  posts: [],
+  isLoading: false,
+  error: null,
+};
+
+export const __getPosts = createAsyncThunk(
+  "posts/getPosts",
+  async (payload, thunkAPI) => {
+    try {
+      const data = await axios.get("http://localhost:3001/posts");
+      return thunkAPI.fulfillWithValue(data.data);
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
   }
-];
+);
 
-
-
-=======
-    category: "소설·시·에세이",
-    title: "나의 라임 오렌지나무",
-    writer: "윤사랑",
-    body: "제제~!",
-    image: "https://interactive-examples.mdn.mozilla.net/media/cc0-images/grapefruit-slice-332-332.jpg",
-  },
-  {
-    id:3,
-    username: "정창우",
-    category: "자기계발",
-    title: "성공하는 사람들의 7가지 습관",
-    writer: "윤사랑",
-    body: "성공합시다~!",
-    image: "https://image.aladin.co.kr/product/43/50/cover500/8934913258_2.jpg",
-  },
- 
-  
-];
-
->>>>>>> home
 export const formSlice = createSlice({
   name : "form",
   initialState,
   reducers: { // Reducer 안에 만든 함수 자체가 리듀서 로직이자, Action creator
-    
-<<<<<<< HEAD
-=======
-    addPost(state, action) {
-      const newPost = [...state, action.payload];
-      return newPost
-    }
-    
-    
->>>>>>> home
+    addPost: (state, action) => {
+      state.posts.push(action.payload)   
+    },
+   },
 
-  }
+   extraReducers: {
+    [__getPosts.pending]: (state) => {
+      state.isLoading = true; // 네트워크 요청이 시작되면 로딩상태를 true로 변경합니다.
+    },
+    [__getPosts.fulfilled]: (state, action) => {
+      state.isLoading = false;
+      console.log(state)  // 네트워크 요청이 끝났으니, false로 변경합니다.
+      state.posts = action.payload; // Store에 있는 todos에 서버에서 가져온 todos를 넣습니다.
+    },
+    [__getPosts.rejected]: (state, action) => {
+      state.isLoading = false;  // 에러가 발생했지만, 네트워크 요청이 끝났으니, false로 변경합니다.
+      state.error = action.payload; // catch 된 error 객체를 state.error에 넣습니다.
+    },
+  },
 });
 
 
-<<<<<<< HEAD
-export const { 리듀서로직 } = formSlice.actions;
-=======
 export const { addPost } = formSlice.actions;
->>>>>>> home
-export default formSlice.reducer;
+export default formSlice;

@@ -12,7 +12,7 @@ const CustomButton = ({ title, onClick }) => {
 const StButton = styled.button`
   width: 70px;
   height: 30px;
-  background-color: red;
+  background-color: white;
 `;
 
 export default CustomButton;
