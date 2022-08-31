@@ -1,5 +1,5 @@
 import React from "react";
-// import styled from "styled-components";
+import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { useState } from "react";
@@ -8,12 +8,15 @@ import axios from "axios";
 import nextId from "react-id-generator";
 
 
+
 // let number = 3;
 
 const Form = () => {
   let id = nextId();
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
+
   
   
 //초기값
@@ -26,11 +29,11 @@ const Form = () => {
     body: "",
   };
 
+  
 
   const [post, setPost] = useState(initialState);
 
 
-  // event handler
   const onChangeHandler = (event) => {
     const { name, value } = event.target;
     setPost({ ...post, [name]: value});
@@ -64,7 +67,8 @@ const Form = () => {
 
   return (
     <>
-      <form onSubmit={onSubmitHandler}>
+    <StForm>
+    <form onSubmit={onSubmitHandler}>
         <div>
           <div>
             <label>작성자</label> 
@@ -136,9 +140,20 @@ const Form = () => {
           </div>
         </div>
       </form>
+    </StForm>
     </>
-    
   );
 };
 
 export default Form;
+
+const StForm = styled.div`
+  margin: 50px auto;
+  padding-top: 50px;
+  border: 1px solid gray;
+  border-radius: 15px;
+  width: 400px;
+  height: 300px;
+  font-size: 18px;
+  text-align: center;
+`;
