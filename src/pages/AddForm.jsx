@@ -15,5 +15,5 @@ const AddForm = () => {
 export default AddForm;
 
 const StAddForm = styled.div`
-  padding-top: 120px;
+  padding-top: 140px;
 `;
