@@ -17,9 +17,7 @@ const List = () => {
   //json-server
   const { isLoading, error, posts } = useSelector((state) => state.form);
 
-  const [like, setLike] = useState({
-    like: 0,
-  });
+  const [like, setLike] = useState([0]);
 
   const onEditHandler = (id, edit) => {
     axios.patch(`http://localhost:3001/posts/${id}`, edit);
@@ -84,6 +82,7 @@ const List = () => {
 
       <Content>
         {posts.map((post) => {
+          like.push(0);
           return (
             <Card
               key={post.id}
@@ -95,13 +94,14 @@ const List = () => {
               <span
                 onClick={(e) => {
                   e.stopPropagation();
-                  setLike({ posts } + 1);
-                  onEditHandler(post.id, like);
+                  let copy = [...like];
+                  copy[post.id] = copy[post.id] + 1;
+                  setLike(copy);
                 }}
               >
                 💛
               </span>{" "}
-              {post.like}
+              {like[post.id]}
               <p>
                 {" "}
                 <b>{post.category}</b>{" "}
