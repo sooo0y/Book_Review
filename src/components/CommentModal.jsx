@@ -12,7 +12,7 @@ const Modal = (props) => {
   });
 
   const onEditHandler = (id, edit) => {
-    axios.patch(`https://yoriking.herokuapp.com/comments/${id}`, edit);
+    axios.patch(`http://yoriking.herokuapp.com/comments/${id}`, edit);
   };
 
   return (
