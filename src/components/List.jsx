@@ -20,7 +20,7 @@ const List = () => {
   const [like, setLike] = useState([0]);
 
   // const onEditHandler = (id, edit) => {
-  //   axios.patch(`https://yoriking.herokuapp.com/posts/${id}`, edit);
+  //   axios.patch(`http://yoriking.herokuapp.com/posts/${id}`, edit);
   // };
 
   // const likePlus = (e) => {
@@ -54,7 +54,7 @@ const List = () => {
   //   "다이어트",
   //   "기타",
   // ];
-  // const filteredCategory = posts.filter((post) => post.category == category);
+  // const filteredCategory = http.filter((post) => post.category == category);
 
   return (
     <StList>
