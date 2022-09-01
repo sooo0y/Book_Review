@@ -40,7 +40,7 @@ const Form = () => {
     event.preventDefault();
     if (post.username.trim() === "" || post.category.trim() === ""  ||post.title.trim() === "" || post.ingredients.trim() === ""||   post.body.trim() === "") return alert("모든 칸을 채워주세요!");
     dispatch(addPost({ ...post, id: id }));
-    axios.post(`http://yoriking.herokuapp.com/posts`, { ...post, id: id });
+    axios.post(`https://yoriking.herokuapp.com/posts`, { ...post, id: id });
     setPost(initialState);
     navigate('/')
   };
