@@ -22,7 +22,7 @@ const Comment = () => {
   const [modal, setModal] = useState(false);
 
   const onDeleteHandler = (id) => {
-    axios.delete(`http://localhost:3001/comments/${id}`);
+    axios.delete(`https://yoriking1234.herokuapp.com/comments/${id}`);
   };
 
   const filteredComment = comments.filter((comment) => comment.parentId == id);
@@ -43,7 +43,7 @@ const Comment = () => {
   const onSubmitHandler = (event) => {
     event.preventDefault();
     dispatch(createComment({ ...comment, id: number }));
-    axios.post("http://localhost:3001/comments", { ...comment, id: number });
+    axios.post("https://yoriking1234.herokuapp.com/comments", { ...comment, id: number });
     setComment(initialState);
   };
 

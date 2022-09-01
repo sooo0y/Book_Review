@@ -1,18 +1,16 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import axios from "axios";
-import { useDispatch } from "react-redux/";
 
 const Modal = (props) => {
 
-  const dispatch = useDispatch();
   
   const [editComment, setEditComment] = useState({
     desc: "",
   });
 
   const onEditHandler = (id, edit) => {
-    axios.patch(`http://localhost:3001/comments/${id}`, edit);
+    axios.patch(`https://yoriking1234.herokuapp.com/comments/${id}`, edit);
   };
 
   return (

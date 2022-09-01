@@ -17,7 +17,7 @@ const Post = () => {
   const [modal, setModal] = useState(false);
 
   const onDeleteHandler = (id) => {
-    axios.delete(`http://localhost:3001/posts/${id}`);
+    axios.delete(`https://yoriking1234.herokuapp.com/posts/${id}`);
   };
 
   useEffect(() => {
