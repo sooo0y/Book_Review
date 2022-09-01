@@ -6,10 +6,10 @@ import { useEffect, useState } from "react";
 import { __getPosts } from "../redux/modules/form";
 import axios from "axios";
 import CustomButton from "./CustomButton";
-// import useTitle from '../hooks/useTitle';
+import useTitle from '../hooks/useTitle';
 
 const List = () => {
-  // const titleUpdater = useTitle('요리킹')
+  const titleUpdater = useTitle('요리킹')
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
