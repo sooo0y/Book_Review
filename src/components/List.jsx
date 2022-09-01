@@ -4,14 +4,31 @@ import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 import { __getPosts } from "../redux/modules/form";
+import axios from "axios";
+import CustomButton from "./CustomButton";
+import useTitle from '../hooks/useTitle';
 
 const List = () => {
+  const titleUpdater = useTitle('요리킹')
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const [like, setLike] = useState([0]);
 
   //json-server
   const { isLoading, error, posts } = useSelector((state) => state.form);
+
+  const [like, setLike] = useState([0]);
+
+  const onEditHandler = (id, edit) => {
+    axios.patch(`http://localhost:3001/posts/${id}`, edit);
+  };
+
+  // const likePlus = (e) => {
+  //   e.stopPropagation();
+  //   const updateLike = likes+1
+  // }
+
+  setTimeout(() => titleUpdater('Home'), 3000);
 
   useEffect(() => {
     dispatch(__getPosts());
@@ -27,72 +44,69 @@ const List = () => {
 
   // category
 
-  const category = [
-    "전체보기",
-    "집밥",
-    "브런치",
-    "야식",
-    "간식",
-    "분식",
-    "다이어트",
-    "기타",
-  ];
+  // const category = [
+  //   "전체보기",
+  //   "집밥",
+  //   "브런치",
+  //   "야식",
+  //   "간식",
+  //   "분식",
+  //   "다이어트",
+  //   "기타",
+  // ];
+  // const filteredCategory = posts.filter((post) => post.category == category);
 
   return (
     <StList>
       <ListTop>
-        {/* <Category>
-        {category.map((a) => {
-          return (
-            <span>{a}</span>
-          )
-        })}
-        </Category> */}
-
         <Category>
-            <span><b>전체보기</b></span>
-            <span>집밥</span>
-            <span>브런치</span>
-            <span>야식</span>
-            <span>간식</span>
-            <span>분식</span>
-            <span>다이어트</span>
-            <span>기타</span>
+          <span>
+            <b>전체보기</b>
+          </span>
+          <span>집밥</span>
+          <span>브런치</span>
+          <span>야식</span>
+          <span>간식</span>
+          <span>분식</span>
+          <span>다이어트</span>
+          <span>기타</span>
         </Category>
 
-        <button
+        <CustomButton
+          title="추가하기"
           onClick={() => {
             navigate("/form");
           }}
-        >
-          추가하기
-        </button>
+        />
       </ListTop>
 
       <Content>
-        {posts.map((form) => {
+        {posts.map((post) => {
           like.push(0);
           return (
             <Card
-              key={form.id}
+              key={post.id}
               onClick={() => {
-                navigate(`/detail/${form.id}`);
+                navigate(`/detail/${post.id}`);
               }}
             >
-              <b> {form.username} </b>
+              <b> {post.username} </b>
               <span
                 onClick={(e) => {
                   e.stopPropagation();
                   let copy = [...like];
-                  copy[form.id] = copy[form.id] + 1;
+                  copy[post.id] = copy[post.id] + 1;
                   setLike(copy);
                 }}
               >
                 💛
               </span>{" "}
-              {like[form.id]}
-              <p> <b>{form.category}</b> </p>
-              <h3> {form.title} </h3>
+              {like[post.id]}
+              <p>
+                {" "}
+                <b>{post.category}</b>{" "}
+              </p>
+              <h3> {post.title} </h3>
             </Card>
           );
         })}
