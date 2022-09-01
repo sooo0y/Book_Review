@@ -12,7 +12,7 @@ export const __getComments = createAsyncThunk(
   "comments/getComments",
   async (payload, thunkAPI) => {
     try {
-      const data = await axios.get("http://yoriking.herokuapp.com/comments");
+      const data = await axios.get("https://yoriking.herokuapp.com/comments");
       return thunkAPI.fulfillWithValue(data.data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -26,7 +26,7 @@ export const commentSlice = createSlice({
   reducers: {
     createComment: (state, action) => {
       state.comments.push(action.payload);
-      axios.post("http://yoriking.herokuapp.com/comments", action.payload);
+      axios.post("https://yoriking.herokuapp.com/comments", action.payload);
     },
     // removeComment: (state, action) => {
     //   let index = state.comments.findIndex(
