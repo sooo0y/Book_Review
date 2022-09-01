@@ -19,9 +19,9 @@ const List = () => {
 
   const [like, setLike] = useState([0]);
 
-  const onEditHandler = (id, edit) => {
-    axios.patch(`https://yoriking.herokuapp.com/posts/${id}`, edit);
-  };
+  // const onEditHandler = (id, edit) => {
+  //   axios.patch(`https://yoriking.herokuapp.com/posts/${id}`, edit);
+  // };
 
   // const likePlus = (e) => {
   //   e.stopPropagation();
