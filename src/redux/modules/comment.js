@@ -33,12 +33,12 @@ export const commentSlice = createSlice({
     //     (comment) => comment.id === action.payload
     //   );
     //   state.comments.splice(index, 1);
-    //   axios.delete(`https://localhost:3001/comments/${action.payload}`);
+    //   axios.delete(`https://yoriking1234.herokuapp.com/comments/${action.payload}`);
     // },
     // updateComment: (state, action) => {
     //   let index = state.comments.findIndex(post => post.id === action.payload.id);
     //   state.comments.splice(index, 1, action.payload);
-    //   axios.patch(`https://localhost:3001/comments/${action.payload.id}`)
+    //   axios.patch(`https://yoriking1234.herokuapp.com/comments/${action.payload.id}`)
     // }
   },
   extraReducers: {
