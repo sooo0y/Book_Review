@@ -12,7 +12,7 @@ export const __getPosts = createAsyncThunk(
   "posts/getPosts",
   async (payload, thunkAPI) => {
     try {
-      const data = await axios.get("http:/yoriking.herokuapp.com/posts");
+      const data = await axios.get("http://yoriking.herokuapp.com/posts");
       return thunkAPI.fulfillWithValue(data.data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
