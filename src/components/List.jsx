@@ -20,7 +20,7 @@ const List = () => {
   const [like, setLike] = useState([0]);
 
   const onEditHandler = (id, edit) => {
-    axios.patch(`http://localhost:3001/posts/${id}`, edit);
+    axios.patch(`https://yoriking.herokuapp.com/posts/${id}`, edit);
   };
 
   // const likePlus = (e) => {
