@@ -81,7 +81,7 @@ const List = () => {
       </ListTop>
 
       <Content>
-        {posts.map((post) => {
+        {/* {posts.map((post) => {
           like.push(0);
           return (
             <Card
@@ -109,7 +109,7 @@ const List = () => {
               <h3> {post.title} </h3>
             </Card>
           );
-        })}
+        })} */}
       </Content>
     </StList>
   );
