@@ -1,14 +1,13 @@
 import React from "react";
-// import styled from "styled-components";
+import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { useState } from "react";
 import { addPost } from "../redux/modules/form";
 import axios from "axios";
 import nextId from "react-id-generator";
+import CustomButton from "./CustomButton";
 
-
-// let number = 3;
 
 const Form = () => {
   let id = nextId();
@@ -24,6 +23,7 @@ const Form = () => {
     title: "",
     ingredients: "",
     body: "",
+    like:0
   };
 
 
@@ -40,10 +40,8 @@ const Form = () => {
     event.preventDefault();
     if (post.username.trim() === "" || post.category.trim() === ""  ||post.title.trim() === "" || post.ingredients.trim() === ""||   post.body.trim() === "") return alert("모든 칸을 채워주세요!");
     dispatch(addPost({ ...post, id: id }));
-    console.log({...post, id: id})
     axios.post("http://localhost:3001/posts", { ...post, id: id });
     setPost(initialState);
-    // number++;
     navigate('/')
   };
 
@@ -63,7 +61,7 @@ const Form = () => {
 
 
   return (
-    <>
+    <StForm>
       <form onSubmit={onSubmitHandler}>
         <div>
           <div>
@@ -122,23 +120,36 @@ const Form = () => {
           <br></br>
           <div>
             <div>
-              <button
+              <CustomButton
+              title="취소하기"
                 onClick={() => {
                   navigate("/");
                 }}
-              >
-                취소
-              </button>
-              <button>추가하기</button>
+              />
+              <CustomButton
+                title="추가하기"/>
+
+                <CustomButton
+                title="다시 작성"
+                onClick={(e) => {e.preventDefault();setPost(initialState)}}/>
             
-              <button onClick={(e) => {e.preventDefault();setPost(initialState)}}>다시 작성하기</button>
             </div>
           </div>
         </div>
       </form>
-    </>
-    
+    </StForm>
   );
 };
 
 export default Form;
+
+const StForm = styled.div`
+  margin: 50px auto;
+  padding-top: 50px;
+  border: 1px solid gray;
+  border-radius: 15px;
+  width: 400px;
+  height: 300px;
+  font-size: 18px;
+  text-align: center;
+`;

@@ -27,6 +27,7 @@ export const formSlice = createSlice({
     addPost: (state, action) => {
       state.posts.push(action.payload)   
     },
+    
    },
 
    extraReducers: {
@@ -35,7 +36,7 @@ export const formSlice = createSlice({
     },
     [__getPosts.fulfilled]: (state, action) => {
       state.isLoading = false;
-      console.log(state)  // 네트워크 요청이 끝났으니, false로 변경합니다.
+      // console.log(state)  // 네트워크 요청이 끝났으니, false로 변경합니다.
       state.posts = action.payload; // Store에 있는 todos에 서버에서 가져온 todos를 넣습니다.
     },
     [__getPosts.rejected]: (state, action) => {

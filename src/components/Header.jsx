@@ -26,7 +26,7 @@ const StHeader = styled.div`
   & h1 {
     font-size: 40px;
     cursor: pointer;
-    width: 330px;
+    width: 350px;
   }
 
   background-color: #5f9947;
